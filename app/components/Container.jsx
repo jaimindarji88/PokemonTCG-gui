@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import PokemonCard from './PokemonCard';
 
 const cards = [
   {
@@ -122,14 +123,21 @@ export default class Container extends React.Component {
   render() {
     return (
       <div className='columns is-multiline'>
-        {cards.map(card => {
-          console.log(card);
-          return (
+        {cards.length ? (
+          cards.map(card => (
             <div className='column is-one-fifth' key={card.id}>
-              <Card card={card} />
+              <PokemonCard card={card} />
             </div>
-          );
-        })}
+          ))
+        ) : (
+          <React.Fragment>
+            <div className='column' />
+            <div className='column is-one-fifth'>
+              <PokemonCard notFound={true} />
+            </div>
+            <div className='column' />
+          </React.Fragment>
+        )}
       </div>
     );
   }
