@@ -48,6 +48,11 @@ export default function Header(props) {
               ))}
             </Select>
           </div>
+          <div className='navbar-item'>
+            <Select>
+              <option value='All'>All Sets</option>
+            </Select>
+          </div>
         </div>
         {/* <div className='navbar-end'>
           <div className='navbar-item'>

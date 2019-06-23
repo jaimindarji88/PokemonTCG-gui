@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --config config/webpack.dev.js",
-    "build": "webpack --config config/webpack.prod.js"
+    "build": "webpack --config config/webpack.prod.js",
+    "test": "jest"
   },
   "author": "Jaimin Darji",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
     "bulma": "^0.7.5",
-    "pokemontcgsdk": "^1.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
@@ -21,6 +21,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
     "css-loader": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",

@@ -2,9 +2,7 @@ import React from 'react';
 
 import NotFound from '../../public/images/no-card-found-1x1.png';
 
-export default function PokemonCard(props) {
-  const { card, notFound } = props;
-
+export default function PokemonCard({ card, notFound, ...props }) {
   if (notFound) {
     return (
       <div className='card'>
@@ -18,10 +16,15 @@ export default function PokemonCard(props) {
   }
 
   return (
-    <div className='card'>
+    <div className='card' {...props}>
       <div className='card-image'>
         <figure className='image is-2by3'>
-          <img src={card.imageUrl} alt='Placeholder image' />
+          <img
+            style={{ cursor: 'pointer' }}
+            value={card.id}
+            src={card.imageUrl}
+            alt='Placeholder image'
+          />
         </figure>
       </div>
     </div>

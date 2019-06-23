@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Header from './components/Header.jsx';
+import Container from './components/Container.jsx';
+import Modal from './components/Modal.jsx';
+import { getCards } from './api/endpoints.js';
 
 import 'bulma/css/bulma.min.css';
-import Container from './components/Container.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,19 +14,60 @@ class App extends React.Component {
 
     this.state = {
       type: 'All',
-      search: ''
+      search: '',
+      modalState: false,
+      cards: [],
+      selectedCard: {}
     };
 
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
-  handleSearchChange(e) {
-    console.log(e.target.value);
+  toggleModal(e) {
+    const id = e.target.getAttribute('value');
+
+    if (id) {
+      const clickedCard = this.state.cards.find(card => card.id === id);
+      if (clickedCard) {
+        this.setState({
+          selectedCard: clickedCard
+        });
+      }
+    }
+    this.setState({
+      modalState: !this.state.modalState
+    });
   }
 
-  handleTypeChange(e) {
-    console.log(e.target.value);
+  async componentDidMount() {
+    const { cards } = await getCards();
+    this.setState({
+      cards
+    });
+  }
+
+  async handleSearchChange(e) {
+    const search = e.target.value;
+
+    const { cards } = await getCards({ name: search, types: this.state.type });
+
+    this.setState({
+      search,
+      cards
+    });
+  }
+
+  async handleTypeChange(e) {
+    const type = e.target.value;
+
+    const { cards } = await getCards({ name: this.state.search, types: type });
+
+    this.setState({
+      cards,
+      type
+    });
   }
 
   render() {
@@ -34,7 +77,15 @@ class App extends React.Component {
           handleTypeChange={this.handleTypeChange}
           handleSearchChange={this.handleSearchChange}
         />
-        <Container />
+        <Container
+          cards={this.state.cards}
+          handlePokemonClick={this.toggleModal}
+        />
+        <Modal
+          card={this.state.selectedCard}
+          closeModal={this.toggleModal}
+          modalState={this.state.modalState}
+        />
       </div>
     );
   }
