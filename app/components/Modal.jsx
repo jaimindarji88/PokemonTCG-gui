@@ -1,8 +1,19 @@
 import React from 'react';
 
+import { getInterestingInfo } from '../api/helpers';
+import { getCards } from '../api/endpoints';
+
 export default function Modal({ card, closeModal, modalState }) {
   if (!modalState) {
     return null;
+  }
+
+  let interestingInfo;
+  if (card.supertype === 'Energy') {
+    interestingInfo =
+      'Energy cards are used to allow a Pokemon to use an attack.';
+  } else {
+    interestingInfo = getInterestingInfo(card.name);
   }
 
   return (
@@ -25,7 +36,7 @@ export default function Modal({ card, closeModal, modalState }) {
               </tr>
               <tr>
                 <th>Type</th>
-                <td>{card.types}</td>
+                <td>{card.types || card.supertype}</td>
               </tr>
               <tr>
                 <th>Set</th>
@@ -37,7 +48,11 @@ export default function Modal({ card, closeModal, modalState }) {
               </tr>
               <tr>
                 <th>Interesting Fact</th>
-                <td>Very Interesting</td>
+                <td>
+                  {interestingInfo
+                    ? interestingInfo
+                    : card.text || 'Could not find an interesting fact.'}
+                </td>
               </tr>
             </tbody>
           </table>

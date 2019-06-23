@@ -22,6 +22,7 @@ class App extends React.Component {
 
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
+    this.handleSetChange = this.handleSetChange.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
 
@@ -70,12 +71,28 @@ class App extends React.Component {
     });
   }
 
+  async handleSetChange(e) {
+    const set = e.target.value;
+    console.log(set);
+    const { cards } = await getCards({
+      name: this.state.search,
+      types: this.state.type,
+      set
+    });
+
+    this.setState({
+      cards,
+      set
+    });
+  }
+
   render() {
     return (
       <div className='app'>
         <Header
           handleTypeChange={this.handleTypeChange}
           handleSearchChange={this.handleSearchChange}
+          handleSetChange={this.handleSetChange}
         />
         <Container
           cards={this.state.cards}

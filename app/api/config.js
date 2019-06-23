@@ -9,7 +9,7 @@ export const routes = {
   set(id) {
     return `sets/${id}`;
   },
-  types: 'types',
+  allTypes: 'types',
   subtypes: 'subtypes',
   supertypes: 'supertypes'
 };
