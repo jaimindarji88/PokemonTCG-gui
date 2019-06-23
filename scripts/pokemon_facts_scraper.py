@@ -5,15 +5,6 @@ import json
 url = 'https://pokemondb.net/pokedex'
 api_url = 'https://api.pokemontcg.io/v1/cards'
 
-headers = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'
-}
-
-cookies = {
-    '__cfduid': 'db3c81c51908a9a458e9324f98f3566041561252677'
-}
-
 
 def get_all_pokemon():
     page_limit = 112
@@ -36,15 +27,10 @@ def get_interesting_facts():
     with open('pokemon.csv') as f:
         for pokemon in f.readlines():
             pok = pokemon.lower().strip()
-            print(pok)
             if pok in d:
                 continue
 
-            res = requests.get(
-                f'{url}/{pok}',
-                headers=headers,
-                cookies=cookies
-            )
+            res = requests.get(f'{url}/{pok}')
 
             if res.status_code == 200:
                 html = fromstring(res.text)
@@ -54,10 +40,3 @@ def get_interesting_facts():
 
     with open('pokemon.json', 'w') as f:
         f.write(json.dumps(d, indent=2))
-
-
-get_interesting_facts()
-
-'''
-//div[@class="resp-scroll"]//table[@class="vitals-table"]//td[@class="cell-med-text"]
-'''
