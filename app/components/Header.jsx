@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { getTypes, getSets } from '../api/endpoints';
 import Select from './Select';
 import Input from './Input';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
 
@@ -42,7 +43,7 @@ export default class Header extends React.Component {
     }
   }
 
-  toggleBurgerMenu(event) {
+  toggleBurgerMenu() {
     const target = document.querySelector('.navbar-menu');
     target.classList.toggle('is-active');
   }
@@ -110,3 +111,11 @@ export default class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  handleSearchChange: PropTypes.func.isRequired,
+  handleTypeChange: PropTypes.func.isRequired,
+  handleSetChange: PropTypes.func.isRequired
+};
+
+export default Header;

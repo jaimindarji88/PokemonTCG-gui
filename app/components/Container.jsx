@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import PokemonCard from './PokemonCard';
 
-export default function Container({ cards, handlePokemonClick }) {
+function Container({ cards, handlePokemonClick }) {
   return (
     <div className='columns is-multiline'>
       {cards.length ? (
@@ -23,3 +24,10 @@ export default function Container({ cards, handlePokemonClick }) {
     </div>
   );
 }
+
+Container.propTypes = {
+  cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handlePokemonClick: PropTypes.func.isRequired
+};
+
+export default Container;

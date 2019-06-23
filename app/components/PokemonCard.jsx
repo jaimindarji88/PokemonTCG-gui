@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import NotFound from '../../public/images/no-card-found-1x1.png';
+import NotFoundImg from '../../public/images/no-card-found-1x1.png';
 
-export default function PokemonCard({ card, notFound, ...props }) {
-  if (notFound) {
+function PokemonCard({ card, notFound, ...props }) {
+  if (notFound || card === undefined) {
     return (
       <div className='card'>
         <div className='card-image'>
           <figure className='image is-1by1'>
-            <img src={NotFound} alt='Placeholder image' />
+            <img src={NotFoundImg} alt='Placeholder image' />
           </figure>
         </div>
       </div>
@@ -30,3 +31,10 @@ export default function PokemonCard({ card, notFound, ...props }) {
     </div>
   );
 }
+
+PokemonCard.propTypes = {
+  card: PropTypes.object,
+  notFound: PropTypes.bool
+};
+
+export default PokemonCard;

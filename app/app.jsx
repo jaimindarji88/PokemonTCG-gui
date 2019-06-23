@@ -8,7 +8,7 @@ import { getCards } from './api/endpoints.js';
 
 import 'bulma/css/bulma.min.css';
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,8 +16,7 @@ class App extends React.Component {
       type: 'All',
       search: '',
       modalState: false,
-      cards: [],
-      selectedCard: {}
+      cards: []
     };
 
     this.handleTypeChange = this.handleTypeChange.bind(this);
@@ -107,5 +106,3 @@ class App extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('root'));

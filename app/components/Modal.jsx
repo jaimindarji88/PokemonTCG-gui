@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { getInterestingInfo } from '../api/helpers';
-import { getCards } from '../api/endpoints';
 
-export default function Modal({ card, closeModal, modalState }) {
-  if (!modalState) {
+function Modal({ card, closeModal, modalState }) {
+  if (!modalState || card === undefined) {
     return null;
   }
 
@@ -62,3 +62,11 @@ export default function Modal({ card, closeModal, modalState }) {
     </div>
   );
 }
+
+Modal.propTypes = {
+  card: PropTypes.object,
+  closeModal: PropTypes.func.isRequired,
+  modalState: PropTypes.bool.isRequired
+};
+
+export default Modal;
