@@ -16,7 +16,8 @@ export default class App extends React.Component {
       type: 'All',
       search: '',
       modalState: false,
-      cards: []
+      cards: [],
+      cardError: false
     };
 
     this.handleTypeChange = this.handleTypeChange.bind(this);
@@ -42,32 +43,57 @@ export default class App extends React.Component {
   }
 
   async componentDidMount() {
-    const { cards } = await getCards();
-    this.setState({
-      cards
-    });
+    try {
+      const { cards } = await getCards();
+      this.setState({
+        cards
+      });
+    } catch (e) {
+      this.setState({
+        cardError: true
+      });
+    }
   }
 
-  async handleSearchChange(e) {
-    const search = e.target.value;
+  async handleSearchChange(event) {
+    const search = event.target.value;
 
-    const { cards } = await getCards({ name: search, types: this.state.type });
+    try {
+      const { cards } = await getCards({
+        name: search,
+        types: this.state.type
+      });
 
-    this.setState({
-      search,
-      cards
-    });
+      this.setState({
+        search,
+        cards
+      });
+    } catch (e) {
+      this.setState({
+        cardError: true
+      });
+    }
   }
 
-  async handleTypeChange(e) {
-    const type = e.target.value;
+  async handleTypeChange(event) {
+    const type = event.target.value;
 
-    const { cards } = await getCards({ name: this.state.search, types: type });
+    try {
+      const { cards } = await getCards({
+        name: this.state.search,
+        types: type,
+        set: this.state.set
+      });
 
-    this.setState({
-      cards,
-      type
-    });
+      this.setState({
+        cards,
+        type
+      });
+    } catch (e) {
+      this.setState({
+        cardError: true
+      });
+    }
   }
 
   async handleSetChange(e) {
@@ -94,6 +120,7 @@ export default class App extends React.Component {
         />
         <Container
           cards={this.state.cards}
+          cardError={this.state.cardError}
           handlePokemonClick={this.toggleModal}
         />
         <Modal

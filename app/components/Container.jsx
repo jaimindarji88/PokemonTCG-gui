@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 import PokemonCard from './PokemonCard';
 
-function Container({ cards, handlePokemonClick }) {
+function Container({ cards, cardError, handlePokemonClick }) {
+  console.log(cardError);
   return (
     <div className='columns is-multiline'>
-      {cards.length ? (
+      {!cardError ? (
         cards.map(card => (
           <div className='column is-one-fifth' key={card.id}>
             <PokemonCard card={card} onClick={handlePokemonClick} />
@@ -27,7 +28,8 @@ function Container({ cards, handlePokemonClick }) {
 
 Container.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handlePokemonClick: PropTypes.func.isRequired
+  handlePokemonClick: PropTypes.func.isRequired,
+  cardError: PropTypes.bool.isRequired
 };
 
 export default Container;
