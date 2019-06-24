@@ -6,6 +6,8 @@ import Container from '../../app/components/Container';
 
 describe('<Container />', () => {
   it('renders without crashing', () => {
-    shallow(<Container cards={[]} handlePokemonClick={() => {}} />);
+    shallow(
+      <Container cardError={false} cards={[]} handlePokemonClick={() => {}} />
+    );
   });
 });

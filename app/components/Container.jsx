@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import PokemonCard from './PokemonCard';
 
 function Container({ cards, cardError, handlePokemonClick }) {
-  console.log(cardError);
   return (
     <div className='columns is-multiline'>
       {!cardError ? (
