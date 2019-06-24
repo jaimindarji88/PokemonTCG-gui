@@ -48,3 +48,5 @@ For the interesting facts, there was no facts about the pokemon available from t
 ## Improvements
 
 I can improve the search functionality, currently it search after each key input. However a better algorithm is to check when the user has finished typing and only search then. This would make it so we don't have to send an api request after each typed character which also increases the stress on the api. The PokemonTCG api also has a 5000 request limit per day, so this change would be necessary if the traffic to this site increases.
+
+As well, more comprehensive testing is always a good idea to add to software.
