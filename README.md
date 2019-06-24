@@ -35,7 +35,7 @@ npm run build
 
 ## Design Decisions
 
-Decided not to use [create-react-app](https://github.com/facebook/create-react-app), as I believe adding to the webpack configuration as needed is much better in the long run for maintenance concerns, and overall less complexity if you ever need to eject the create-react-app to add more custom configuration.
+Decided not to use [create-react-app](https://github.com/facebook/create-react-app), as I believe adding to the webpack configuration as needed is better in the long run for maintenance concerns, and overall less complexity, as when a more customized webpack config requires you to eject your create-react-app.
 
 I decided to use [Bulma](https://github.com/jgthms/bulma) as my CSS library. This allowed me to focus completly on creating the React app and able to use the different styles from Bulma for both mobile and web.
 
@@ -43,7 +43,7 @@ A state-management library such as [redux](https://github.com/reduxjs/redux) did
 
 Every application needs to be tested, especially the essential parts that keep it running. I started testing with jest, only creating the bare minimum number of tests. If this was a larger more complex app testing would be necessary to make sure everything works as expected. I used [jest](https://github.com/facebook/jest) and [enzyme](https://github.com/airbnb/enzyme).
 
-For the interesting facts, there was no facts about the pokemon available from the pokemontcg.io api. So to meet this requirement I found the pokedex entries of each pokemon found in the api, through https://pokemondb.net/, and scraped each entry and put it into a JS object that will be used from the app. I made a python script to be able to do this and the methods used can be used in the scripts folder.
+For the interesting facts, there was no facts about the pokemon available from the pokemontcg.io api. So to meet this requirement I found the pokedex entries of each pokemon found in the api, through https://pokemondb.net/, and scraped each entry and put it into a JS object that will be used from the app. I made a python script to be able to do this and the methods used can be seen in the scripts folder.
 
 ## Improvements
 
