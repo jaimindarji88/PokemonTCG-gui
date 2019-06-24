@@ -41,7 +41,7 @@ I decided to use [Bulma](https://github.com/jgthms/bulma) as my CSS library. Thi
 
 A state-management library such as [redux](https://github.com/reduxjs/redux) did not need to be used because there were not many components Of those components you did not need to globally manage the state, as this would add too much complexity to a simple React app. If this app needed many components with different states, Redux becomes useful and very powerful.
 
-I started testing just the bare minimum, but if this was a larger more complex app testing would be necessary to make sure everything works as expected. I used [jest](https://github.com/facebook/jest) and [enzyme](https://github.com/airbnb/enzyme).
+Every application needs to be tested, especially the essential parts that keep it running. I started testing with jest, only creating the bare minimum number of tests. If this was a larger more complex app testing would be necessary to make sure everything works as expected. I used [jest](https://github.com/facebook/jest) and [enzyme](https://github.com/airbnb/enzyme).
 
 For the interesting facts, there was no facts about the pokemon available from the pokemontcg.io api. So to meet this requirement I found the pokedex entries of each pokemon found in the api, through https://pokemondb.net/, and scraped each entry and put it into a JS object that will be used from the app. I made a python script to be able to do this and the methods used can be used in the scripts folder.
 

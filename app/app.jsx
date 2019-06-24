@@ -72,7 +72,6 @@ export default class App extends React.Component {
 
   async handleSetChange(e) {
     const set = e.target.value;
-    console.log(set);
     const { cards } = await getCards({
       name: this.state.search,
       types: this.state.type,
